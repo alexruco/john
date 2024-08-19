@@ -1,7 +1,8 @@
 # john/models.py
 
 from openai import OpenAI
-import requests
+import subprocess
+import json
 
 def openai_model(prompt, organization_id, api_key, model, config=None):
     """Interact with OpenAI's API using the updated Python client."""
@@ -21,22 +22,22 @@ def openai_model(prompt, organization_id, api_key, model, config=None):
     # Extract and return the message content from the response
     return response.choices[0].message.content
 
-def other_model(prompt, api_key, config=None):
-    """Interact with another AI model."""
-    headers = {
-        'Authorization': f'Bearer {api_key}',
-        'Content-Type': 'application/json',
-    }
-    data = {
-        'input': prompt,
-    }
 
+def llamma3_model(prompt, config=None):
+    """Interact with the LLaMA 3 model running locally via Ollama."""
+    
+    # Construct the command to run the LLaMA 3 model using Ollama
+    command = ["ollama", "run", "llama3", prompt]
+
+    # If there are configuration options, pass them as JSON, including max_tokens if provided
     if config:
-        data.update(config)
+        command += ["--config", json.dumps(config)]
 
-    response = requests.post('https://api.othermodel.com/v1/generate', headers=headers, json=data)
-
-    if response.status_code != 200:
-        raise Exception(f"Other Model API request failed with status code {response.status_code}: {response.text}")
-
-    return response.json()
+    # Run the command and capture the output
+    result = subprocess.run(command, capture_output=True, text=True)
+    
+    if result.returncode != 0:
+        raise Exception(f"LLaMA 3 model request failed: {result.stderr}")
+    
+    # Return the model's response
+    return result.stdout.strip()

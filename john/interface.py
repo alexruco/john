@@ -1,7 +1,7 @@
 # john/interface.py
 
 from john.config import Config
-from john.models import openai_model, other_model
+from john.models import openai_model, llamma3_model
 
 class AIInterface:
     def __init__(self, config_path=None):
@@ -18,15 +18,14 @@ class AIInterface:
 
     def send_prompt(self, prompt, model_name, model=None, config=None):
         """Send the prompt to the indicated model and return the response."""
-        organization_id = self.config.get_organization_id()
-        api_key = self.config.get_api_key(model_name)
-        config = config or self.config.get_config(model_name)
-
         if model_name == 'openai':
+            organization_id = self.config.get_organization_id()
+            api_key = self.config.get_api_key(model_name)
+            config = config or self.config.get_config(model_name)
             if model is None:
                 raise ValueError("Model must be specified for OpenAI.")
             return openai_model(prompt, organization_id, api_key, model, config)
-        elif model_name == 'other_model':
-            return other_model(prompt, api_key, config)
+        elif model_name == 'llamma3':
+            return llamma3_model(prompt, config)
         else:
             raise ValueError(f"Model {model_name} is not supported.")
