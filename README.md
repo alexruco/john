@@ -13,7 +13,38 @@ Welcome to **John**! This project is designed to provide a seamless interface to
 You can install the package via pip:
 
 ```bash
-pip install john
+pip install GIT+https://github.com/alexruco/john
+
+```
+## Configuration 🔧
+
+By default, this package uses a centralized configuration file located at:
+
+/Users/aimaggie.com/projects/aimaggie.com/john/config.json
+
+Important: This path is hardcoded in the package. If you wish to change the location of the configuration file, you must modify the Config class in john/config.py. Alternatively, you can provide a custom configuration path when initializing the AIInterface:
+
+```python
+from john.interface import AIInterface
+
+# Example: Using a custom configuration file path
+ai_interface = AIInterface(config_path="/path/to/your/custom/config.json")
+
+```
+
+Make sure your config.json file contains the necessary API keys, project IDs, and other configurations needed by the models you intend to use.
+
+Here's an example of what your config.json file should look like:
+
+```json
+{
+    "openai": {
+        "api_key": "your-openai-api-key",
+        "project_id": "your-openai-project-id",
+        "organization_id": "your-openai-organization-id"
+    }
+}
+
 ```
 
 ## Usage 📚

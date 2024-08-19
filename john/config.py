@@ -8,10 +8,11 @@ class Config:
         self.project_ids = {}
         self.configs = {}
         self.organization_id = None
+        # Prioritize the provided config path; fall back to the default path if not provided
         if config_path:
             self.load_config(config_path)
         else:
-            self.load_config("config.json")  # Default config file
+            self.load_config("/Users/aimaggie.com/projects/aimaggie.com/john/config.json")
 
     def load_config(self, config_path):
         """Load API keys, project IDs, organization ID, and configurations from a JSON file."""

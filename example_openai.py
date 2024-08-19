@@ -8,6 +8,6 @@ ai_interface = AIInterface()
 # Define the OpenAI model you want to use
 model_name = "gpt-3.5-turbo"
 
-# Send a prompt to OpenAI and print the response
+# Send a prompt to OpenAI
 response = ai_interface.send_prompt('Hello, world!', 'openai', model_name)
 print(response)
