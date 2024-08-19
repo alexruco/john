@@ -9,8 +9,8 @@ setup(
     url="https://github.com/alexruco/john",
     packages=find_packages(),
     install_requires=[
-        "openai>=1.0.0",
-        "ollama>=1.0.0"
+        "openai>=1.4.1",
+        "ollama>=0.3.6"
     ],
     python_requires=">=3.6",
     classifiers=[
