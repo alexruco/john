@@ -1,22 +1,22 @@
-# setup.py
-
 from setuptools import setup, find_packages
 
 setup(
-    name='john',
-    version='0.1.0',
+    name="john",
+    version="0.1.0",
+    description="An interface to interact with various AI models, including OpenAI and LLaMA 3 via Ollama.",
+    author="Alex Ruco",
+    author_email="alex@ruco.pt",
+    url="https://github.com/alexruco/john",
     packages=find_packages(),
-    install_requires=['requests'],  # Add any other dependencies here
-    author='Your Name',
-    author_email='your.email@example.com',
-    description='Interface with different AI models',
-    long_description=open('README.md').read(),
-    long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/john',
-    classifiers=[
-        'Programming Language :: Python :: 3',
-        'License :: OSI Approved :: MIT License',
-        'Operating System :: OS Independent',
+    install_requires=[
+        "openai>=1.0.0",
+        "ollama>=1.0.0"
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
+    classifiers=[
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+    ],
+    include_package_data=True,
 )

@@ -1,22 +1,24 @@
-# my_python_module/__init__.py
+# john/__init__.py
 
 """
-John
-================
+John AI Interface
+==================
+This package provides an interface to interact with various AI models, including OpenAI and LLaMA 3 via Ollama.
 
-A brief description of what your module does.
-
-Submodules
-----------
-module
-    Description of what the submodule does.
+Modules:
+---------
+- config: Handles loading and managing API keys, project IDs, and other configurations.
+- interface: Provides a high-level interface for sending prompts to different AI models.
+- models: Contains functions to interact with specific AI models (e.g., OpenAI, LLaMA 3).
 """
 
-__version__ = "0.1.0"
-
+from .config import Config
+from .interface import AIInterface
 from .models import openai_model, llamma3_model
 
-
 __all__ = [
-    "send_prompt"
+    "Config",
+    "AIInterface",
+    "openai_model",
+    "llamma3_model"
 ]
